@@ -20,6 +20,13 @@ public interface Ltr22Api {
     int LTR22_CHANNEL_CNT = 4;
     int LTR22_RANGE_CNT = 6;
     int LTR22_ADC_FREQ_CNT = 25;
+    int[] LTR22_DISK_FREQ_ARRAY = new int[]{
+            3472, 3720, 4006, 4340, 4734,
+            5208, 5580, 5787, 6009, 6510,
+            7102, 7440, 7812, 8680, 9765,
+            10416, 11160, 13020, 15625, 17361,
+            19531, 26041, 39062, 52083, 78125
+    };
 
     int LTR22_Init(TLTR22 module);
 
