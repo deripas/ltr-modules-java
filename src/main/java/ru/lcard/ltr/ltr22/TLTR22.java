@@ -18,7 +18,7 @@ public class TLTR22 extends StructPack4 {
     public Boolean AC_DC_State = new Boolean();                 // состояние true =AC+DC false=AC
     public Boolean MeasureADCZero = new Boolean();              // измерение Zero true - включено false - выключено
     public Boolean DataReadingProcessed = new Boolean();        // состояние считывания АЦП true-АЦП считывается false - нет
-    public AdcRange[] ADCChannelRange = array(new AdcRange[LTR22_CHANNEL_CNT]); // предел имзерений АЦП по каналам 0 - 1В 1 - 0.3В 2 - 0.1В 3 - 0.03В 4 - 10В 5 - 3В
+    public LTR22_RANGES_Enum8[] ADCChannelRange = array(new LTR22_RANGES_Enum8[LTR22_CHANNEL_CNT]); // предел имзерений АЦП по каналам 0 - 1В 1 - 0.3В 2 - 0.1В 3 - 0.03В 4 - 10В 5 - 3В
     public Unsigned8[] ChannelEnabled = array(new Unsigned8[LTR22_CHANNEL_CNT]);   // Состояние каналов, включен - true выключен - false
     public DWORD FreqDiscretizationIndex = new DWORD();
     public BYTE SyncType = new BYTE();
@@ -29,15 +29,15 @@ public class TLTR22 extends StructPack4 {
 
     public Boolean SyncMaster = new Boolean();        // true - модуль генерит сигнал, false - модуль принимает синхросигнал
     public TINFO_LTR22 ModuleInfo = inner(new TINFO_LTR22());
-    public ADC_CHANNEL_CALIBRATION[] ADCCalibration = array(new ADC_CHANNEL_CALIBRATION[LTR22_CHANNEL_CNT * LTR22_ADC_FREQ_CNT]);
+    public TLTR22_ADC_CHANNEL_CALIBRATION[] ADCCalibration = array(new TLTR22_ADC_CHANNEL_CALIBRATION[LTR22_CHANNEL_CNT * LTR22_ADC_FREQ_CNT]);
 
 
-    public AdcRange channelRange(int ch) {
-        return ADCChannelRange[ch];
+    public LTR22_RANGES channelRange(int ch) {
+        return ADCChannelRange[ch].get();
     }
 
-    public void fillChannelRange(int ch, AdcRange range) {
-        ADCChannelRange[ch] = range;
+    public void fillChannelRange(int ch, LTR22_RANGES range) {
+        ADCChannelRange[ch].set(range);
     }
 
     public boolean channelEnabled(int ch) {
@@ -52,31 +52,37 @@ public class TLTR22 extends StructPack4 {
         return ch * LTR22_ADC_FREQ_CNT + freqIndex;
     }
 
-    private int calibr_val_index(AdcRange range) {
-        return range.value.intValue();
+    private int calibr_val_index(LTR22_RANGES range) {
+        return range.intValue();
     }
 
-    public void fillUserCalibOffset(int ch, int freqIndex, AdcRange range, float value) {
+    public void fillUserCalibOffset(int ch, int freqIndex, LTR22_RANGES range, float value) {
         ADCCalibration[calib_struct_index(ch, freqIndex)].UserCalibOffset[calibr_val_index(range)].set(value);
     }
 
-    public void fillUserCalibScale(int ch, int freqIndex, AdcRange range, float value) {
+    public void fillUserCalibScale(int ch, int freqIndex, LTR22_RANGES range, float value) {
         ADCCalibration[calib_struct_index(ch, freqIndex)].UserCalibScale[calibr_val_index(range)].set(value);
     }
 
-    public float UserCalibOffset(int ch, int freqIndex, AdcRange range) {
+    public float UserCalibOffset(int ch, int freqIndex, LTR22_RANGES range) {
         return ADCCalibration[calib_struct_index(ch, freqIndex)].UserCalibOffset[calibr_val_index(range)].get();
     }
 
-    public float UserCalibScale(int ch, int freqIndex, AdcRange range) {
+    public float UserCalibScale(int ch, int freqIndex, LTR22_RANGES range) {
         return ADCCalibration[calib_struct_index(ch, freqIndex)].UserCalibScale[calibr_val_index(range)].get();
     }
 
-    public float FactoryCalibOffset(int ch, int freqIndex, AdcRange range) {
+    public float FactoryCalibOffset(int ch, int freqIndex, LTR22_RANGES range) {
         return ADCCalibration[calib_struct_index(ch, freqIndex)].FactoryCalibOffset[calibr_val_index(range)].get();
     }
 
-    public float FactoryCalibScale(int ch, int freqIndex, AdcRange range) {
+    public float FactoryCalibScale(int ch, int freqIndex, LTR22_RANGES range) {
         return ADCCalibration[calib_struct_index(ch, freqIndex)].FactoryCalibScale[calibr_val_index(range)].get();
+    }
+
+    public class LTR22_RANGES_Enum8 extends Enum8<LTR22_RANGES> {
+        public LTR22_RANGES_Enum8() {
+            super(LTR22_RANGES.class);
+        }
     }
 }

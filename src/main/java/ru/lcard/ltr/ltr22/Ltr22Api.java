@@ -6,7 +6,6 @@ import jnr.ffi.annotations.Out;
 import jnr.ffi.byref.ByteByReference;
 import jnr.ffi.byref.DoubleByReference;
 import jnr.ffi.byref.IntByReference;
-import jnr.ffi.types.size_t;
 import jnr.ffi.types.u_int8_t;
 
 import java.nio.DoubleBuffer;
@@ -68,7 +67,7 @@ public interface Ltr22Api {
 
     int LTR22_ProcessData(TLTR22 module, int[] src_data, @Out double[] dst_data, int size, boolean calibrMainPset, boolean calibrExtraVolts, byte[] OverflowFlags);
 
-    int LTR22_ProcessDataEx(TLTR22 module, int[] src_data, DoubleBuffer dst_data, @Out IntByReference size, EnumSet<en_ProcFlags> flags, byte[] OverflowFlags, Pointer reserved);
+    int LTR22_ProcessDataEx(TLTR22 module, int[] src_data, DoubleBuffer dst_data, @Out IntByReference size, EnumSet<LTR22_PROC_FLAGS> flags, byte[] OverflowFlags, Pointer reserved);
 
     int LTR22_ReadAVREEPROM(TLTR22 module, byte[] Data, int BeginAddress, int size);
 

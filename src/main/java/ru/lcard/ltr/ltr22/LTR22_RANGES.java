@@ -2,8 +2,11 @@ package ru.lcard.ltr.ltr22;
 
 import lombok.AllArgsConstructor;
 
+/**
+ *  коды диапазонов АЦП
+ */
 @AllArgsConstructor
-public enum en_AdcRange {
+public enum LTR22_RANGES {
     Range_1(0),
     Range_0_3(1),
     Range_0_1(2),
