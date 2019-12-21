@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
  * метки "СТАРТ" или "СЕКУНДА".
  */
 @AllArgsConstructor
-public enum en_LTR_MarkMode {
+public enum LTR_MarkMode {
     /**
      * < Генерация метки отключена
      */

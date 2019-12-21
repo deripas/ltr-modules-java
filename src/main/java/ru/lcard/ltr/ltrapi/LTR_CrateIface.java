@@ -3,7 +3,7 @@ package ru.lcard.ltr.ltrapi;
 /**
  * Интерфейс подключения крейта
  */
-public enum en_LTR_CrateIface {
+public enum LTR_CrateIface {
     /**
      * < Неизвествный код интерфейса крейта.
      * При передаче в функции данное значение

@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
  * битовое "ИЛИ".
  */
 @AllArgsConstructor
-public enum en_LTR_GetCratesFlags {
+public enum LTR_GetCratesFlags {
     /**
      * Флаг указывает, что функция должна возвратить только список крейтов,
      * с которыми службой установлено рабочее соединение, в котором возможно

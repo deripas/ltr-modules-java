@@ -2,7 +2,6 @@ package ru.lcard.ltr.ltrapi;
 
 import jnr.ffi.LibraryLoader;
 import jnr.ffi.Pointer;
-import jnr.ffi.annotations.Encoding;
 import jnr.ffi.annotations.Out;
 import jnr.ffi.byref.ByteByReference;
 import jnr.ffi.byref.IntByReference;
@@ -123,7 +122,7 @@ public interface LtrApi {
      * остальных функций.
      *
      * @param hnd Описатель соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_Init(TLTR hnd);
 
@@ -137,17 +136,17 @@ public interface LtrApi {
      * После завершения работы необходимо закрыть соединение с помощью {@link LtrApi#LTR_Close}.
      * <p>
      * Если функция возвращает ошибку, то в некоторых случаях соединение может
-     * оставаться открытым (например, для ошибки {@link en_LTR_ERRORS#WARNING_MODULE_IN_USE}), поэтому
+     * оставаться открытым (например, для ошибки {@link LTR_ERRORS#WARNING_MODULE_IN_USE}), поэтому
      * даже в случае возвращения данной функцией ошибки, все равно следует
      * вызывать {@link LtrApi#LTR_Close}.
      * <p>
-     * Все возвращенные ошибки (включая {@link en_LTR_ERRORS#WARNING_MODULE_IN_USE}) рекомендуется
+     * Все возвращенные ошибки (включая {@link LTR_ERRORS#WARNING_MODULE_IN_USE}) рекомендуется
      * интерпретировать как признак того, что с соединением нельзя работать и
      * единственной допустимой функцией, которую можно и нужно вызвать следующей,
      * является {@link LtrApi#LTR_Close}.
      *
      * @param hnd Описатель соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_Open(TLTR hnd);
 
@@ -175,7 +174,7 @@ public interface LtrApi {
      * @param hnd   Описатель соединения.
      * @param saddr IP-адрес машины, на которой запущена служба ltrd, в 32-битном формате
      * @param sport Номер TCP порта, который будет использоваться при подключении к службе ltrd.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_OpenSvcControl(TLTR hnd, int saddr, int sport);
 
@@ -190,7 +189,7 @@ public interface LtrApi {
      * между службой ltrd и крейтом на случай, если крейт подключен одновременно
      * по двум интерфейсам (например в случае, если крейт настроен и подключен
      * по Ethernet, но также и подключен по USB в режиме настройки). В большинстве
-     * случаев достаточно указать в качестве интерфейса {@link en_LTR_CrateIface#LTR_CRATE_IFACE_UNKNOWN},
+     * случаев достаточно указать в качестве интерфейса {@link LTR_CrateIface#LTR_CRATE_IFACE_UNKNOWN},
      * что означает, что крейт может быть подключен по любому интерфейсу. При этом,
      * если крейт подключен по двум интерфейсам, то открытое соединение будет
      * связано с крейтом c использованием интерфейса, который является рабочим
@@ -209,11 +208,11 @@ public interface LtrApi {
      * @param hnd   Описатель соединения.
      * @param saddr IP-адрес машины, на которой запущена служба ltrd, в 32-битном формате
      * @param sport Номер TCP порта, который будет использоваться при подключении к службе ltrd.
-     * @param iface Значение из {@link en_LTR_CrateIface}, указывающая интерфейс, по которому должен быть подключен крейт
+     * @param iface Значение из {@link LTR_CrateIface}, указывающая интерфейс, по которому должен быть подключен крейт
      * @param csn   Строка с серийным номером крейта, с которым нужно установить соединение.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
-    int LTR_OpenCrate(TLTR hnd, int saddr, int sport, en_LTR_CrateIface iface, String csn);
+    int LTR_OpenCrate(TLTR hnd, int saddr, int sport, LTR_CrateIface iface, String csn);
 
     /**
      * Открытие соединения с заданным таймаутом.
@@ -223,7 +222,7 @@ public interface LtrApi {
      *
      * @param hnd     Описатель соединения.
      * @param timeout Время в мс на открытие соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_OpenEx(TLTR hnd, long timeout);
 
@@ -236,7 +235,7 @@ public interface LtrApi {
      * соединения уже нельзя использовать без открытия нового соединения.
      *
      * @param hnd Описатель соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_Close(TLTR hnd);
 
@@ -251,7 +250,7 @@ public interface LtrApi {
      * данное соединение клиентом.
      *
      * @param hnd Описатель соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_IsOpened(TLTR hnd);
 
@@ -273,7 +272,7 @@ public interface LtrApi {
      *
      * @param hnd     Описатель соединения.
      * @param version В данной переменной возвращается версия службы ltrd в формате, описанном выше.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetServerVersion(TLTR hnd, @Out IntByReference version);
 
@@ -301,7 +300,7 @@ public interface LtrApi {
      *            В данный массив будут сохранены серийные номера подключенных
      *            крейтов (каждая строка соответствует своему серийному номеру
      *            крейта).
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetCrates(TLTR hnd, @Out SN.Array csn);
 
@@ -357,7 +356,7 @@ public interface LtrApi {
      *                        Каждый элемент соответствует серийному номеру из
      *                        serials с тем же номером. Если информация о крейтах
      *                        не нужна, то может быть передан нулевой указатель.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetCratesEx(TLTR hnd, int max_crates, int flags,
                         @Out IntByReference crates_found, @Out IntByReference crates_returned,
@@ -383,7 +382,7 @@ public interface LtrApi {
      * @param descr       Структура, в которую будет сохранено описание крейта
      * @param size        Размер структуры, переданной в качестве параметра
      *                    descr.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetCrateDescr(TLTR hsrv, int crate_iface, String crate_sn, @Out TLTR_CRATE_DESCR descr, int size);
 
@@ -405,7 +404,7 @@ public interface LtrApi {
      *                    статистики по крейту.
      * @param size        Размер структуры, переданной в качестве параметра
      *                    stat.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetCrateStatistic(TLTR hsrv, int crate_iface, String crate_sn,
                               @Out TLTR_CRATE_STATISTIC stat, int size);
@@ -431,7 +430,7 @@ public interface LtrApi {
      *                    статистики по крейту.
      * @param size        Размер структуры, переданной в качестве параметра
      *                    stat.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetModuleStatistic(TLTR hsrv, int crate_iface, String crate_sn, int module_slot,
                                @Out TLTR_MODULE_STATISTIC stat, int size);
@@ -455,7 +454,7 @@ public interface LtrApi {
      * @param mid    Указатель на массив из #LTR_MODULES_PER_CRATE_MAX
      *               элементов, в котором при успешном выполнении будут
      *               возвращены идентификаторы установленных модулей
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetCrateModules(TLTR hcrate, MID.Array mid);
 
@@ -468,7 +467,7 @@ public interface LtrApi {
      * @param hcrate    Описатель управляющего соединения с крейтом.
      * @param CrateInfo В данной структуре при успехе возвращается информация
      *                  о крейте.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetCrateInfo(TLTR hcrate, @Out TLTR_CRATE_INFO CrateInfo);
 
@@ -482,7 +481,7 @@ public interface LtrApi {
      *
      * @param hcrate Описатель управляющего соединения с крейтом.
      * @param conf   Конфигурация линий разъема синхронизации крейта.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_Config(TLTR hcrate, TLTR_CONFIG conf);
 
@@ -516,9 +515,9 @@ public interface LtrApi {
      * @param hcrate Описатель управляющего соединения с крейтом.
      * @param mode   Режим генерации метки "СТАРТ" ---  значение из
      *               #en_LTR_MarkMode.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
-    int LTR_MakeStartMark(TLTR hcrate, en_LTR_MarkMode mode);
+    int LTR_MakeStartMark(TLTR hcrate, LTR_MarkMode mode);
 
     /**
      * Запуск генерации меток "СЕКУНДА".
@@ -540,9 +539,9 @@ public interface LtrApi {
      * @param hcrate Описатель управляющего соединения с крейтом.
      * @param mode   Режим генерации метки "СЕКУНДА" ---  значение из
      *               #en_LTR_MarkMode.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
-    int LTR_StartSecondMark(TLTR hcrate, en_LTR_MarkMode mode);
+    int LTR_StartSecondMark(TLTR hcrate, LTR_MarkMode mode);
 
     /**
      * Останов генерации меток "СЕКУНДА".
@@ -551,14 +550,14 @@ public interface LtrApi {
      * была запущена ранее с помощью LTR_StartSecondMark()
      *
      * @param hcrate Описатель управляющего соединения с крейтом.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_StopSecondMark(TLTR hcrate);
 
     /**
      * @param hcrate   Описатель управляющего соединения с крейтом.
      * @param settings
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_PutSettings(TLTR hcrate, TLTR_SETTINGS settings);
 
@@ -606,7 +605,7 @@ public interface LtrApi {
      * @param flags  Дополнительные флаги, управляющие работой функции.
      *               Сейчас не используются, поэтому поле всегда должно
      *               быть равно нулю.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_ResetModule(TLTR ltr, int iface, String serial, int slot, long flags);
 
@@ -623,7 +622,7 @@ public interface LtrApi {
      *                  запуска службы ltrd.
      *                  Если TRUE --- изменения сохраняются в настройках и
      *                  будут учитываться после перезапуска службы.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_SetLogLevel(TLTR ltr, int level, boolean permanent);
 
@@ -635,7 +634,7 @@ public interface LtrApi {
      * @param ltr   Описатель управляющего соединения.
      * @param level В данной переменной возвращается установленный уровень
      *              журнала --- значение из #en_LTR_LogLevel.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetLogLevel(TLTR ltr, @Out IntByReference level);
 
@@ -658,7 +657,7 @@ public interface LtrApi {
      *              в описании параметра.
      * @param size  Размер данных, передаваемых в качестве значения
      *              параметра (на которые указывает val).
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_SetServerParameter(TLTR hsrv, long param, Pointer val, int size);
 
@@ -681,7 +680,7 @@ public interface LtrApi {
      * @param size  Размер массива, на который указывает переменная val.
      *              Разные параметры могут требовать разного размера для
      *              сохранения значения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetServerParameter(TLTR hsrv, long param, @Out PointerByReference val, @Out IntByReference size);
 
@@ -697,7 +696,7 @@ public interface LtrApi {
      * может и должна быть вызвана следующей,  является LTR_Close().
      *
      * @param ltr Описатель управляющего соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_ServerRestart(TLTR ltr);
 
@@ -712,7 +711,7 @@ public interface LtrApi {
      * может и должна быть вызвана следующей,  является LTR_Close().
      *
      * @param ltr Описатель управляющего соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_ServerShutdown(TLTR ltr);
 
@@ -762,7 +761,7 @@ public interface LtrApi {
      *                         max_entries записей. Если в max_entries передано
      *                         нулевое значение, то в качестве данного параметра
      *                         может быть передан нулевой указатель.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetListOfIPCrates(TLTR ltr, long max_entries, int ip_net, int ip_mask,
                               @Out IntByReference entries_found, @Out IntByReference entries_returned,
@@ -789,7 +788,7 @@ public interface LtrApi {
      *                  запуска службы ltrd.
      *                  Если TRUE --- изменения сохраняются в настройках и
      *                  будут учитываться после перезапуска службы.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_AddIPCrate(TLTR ltr, int ip_addr, long flags, boolean permanent);
 
@@ -816,7 +815,7 @@ public interface LtrApi {
      *                  запуска службы ltrd.
      *                  Если TRUE --- изменения сохраняются в настройках и
      *                  будут учитываться после перезапуска службы.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_DeleteIPCrate(TLTR ltr, int ip_addr, boolean permanent);
 
@@ -852,7 +851,7 @@ public interface LtrApi {
      * @param ip_addr IP-адрес крейта в
      *                [32-битном формате](@ref sect_ip_addr_format),
      *                с которым нужно установить соединение.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_ConnectIPCrate(TLTR ltr, int ip_addr);
 
@@ -876,7 +875,7 @@ public interface LtrApi {
      * @param ip_addr IP-адрес крейта в
      *                [32-битном формате](@ref sect_ip_addr_format),
      *                с которым нужно установить соединение.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_DisconnectIPCrate(TLTR ltr, int ip_addr);
 
@@ -902,7 +901,7 @@ public interface LtrApi {
      * не выполняя каких-либо действий.
      *
      * @param ltr Описатель управляющего соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_ConnectAllAutoIPCrates(TLTR ltr);
 
@@ -918,7 +917,7 @@ public interface LtrApi {
      * Ethernet, то функция завершается успешно, не выполняя каких-либо действий.
      *
      * @param ltr Описатель управляющего соединения.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_DisconnectAllIPCrates(TLTR ltr);
 
@@ -941,7 +940,7 @@ public interface LtrApi {
      *                  запуска службы ltrd.
      *                  Если TRUE --- изменения сохраняются в настройках и
      *                  будут учитываться после перезапуска службы.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_SetIPCrateFlags(TLTR ltr, int ip_addr, long flags, boolean permanent);
 
@@ -976,7 +975,7 @@ public interface LtrApi {
      *                заданного времени не будет принято запрашиваемое количество
      *                слов, то функция все равно вернет управление, возвратив
      *                в качестве результата реально принятое количество слов.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_Recv(TLTR hnd, int[] buf, int[] tmark, long size, long timeout);
 
@@ -1003,7 +1002,7 @@ public interface LtrApi {
      *                для записи запрашиваемого количества слов, то функция
      *                все равно вернет управление, возвратив в качестве результата
      *                реально количество слов, записанных в буфер.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_Send(TLTR ltr, int[] buf, long size, long timeout);
 
@@ -1025,7 +1024,7 @@ public interface LtrApi {
      * @param ltr      Описатель соединения с модулем
      * @param unixtime Абсолютное значение времени в секундах с 1 января 1970 года
      *                 (unixtime).
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_GetLastUnixTimeMark(TLTR ltr, @Out LongLongByReference unixtime);
 
@@ -1062,7 +1061,7 @@ public interface LtrApi {
      *
      * @param hnd  Описатель соединения.
      * @param tout Таймаут по умолчанию в мс.
-     * @return Код ошибки <code>{@link en_LTR_ERRORS}</code>.
+     * @return Код ошибки <code>{@link LTR_ERRORS}</code>.
      */
     int LTR_SetTimeout(TLTR hnd, long tout);
 

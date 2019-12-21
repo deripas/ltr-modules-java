@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
  * выходе DIGOUT разъема синхронизации крейта.
  */
 @AllArgsConstructor
-public enum en_LTR_DigOutCfg {
+public enum LTR_DigOutCfg {
     LTR_DIGOUT_CONST0(0), //< Постоянный уровень логического "0"
     LTR_DIGOUT_CONST1(1), //< Постоянный уровень логической "1"
     LTR_DIGOUT_USERIO0(2), //< Выход подключен к ножке userio0

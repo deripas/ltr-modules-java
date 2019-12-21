@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
  * каким образом задается значение параметра.
  */
 @AllArgsConstructor
-public enum en_LTRD_Params {
+public enum LTRD_Params {
     /**
      * Интервал опроса крейта, для проверки, рабочее ли соединение с крейтом
      * по интерфейсу Ethernet и обнаружения отключения крейта.

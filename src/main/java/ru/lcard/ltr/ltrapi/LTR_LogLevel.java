@@ -3,7 +3,7 @@ package ru.lcard.ltr.ltrapi;
 /**
  * Уровень вывода журнала службой ltrd.
  */
-public enum en_LTR_LogLevel {
+public enum LTR_LogLevel {
     LTR_LOGLVL_ERR_FATAL, //< Фатальные ошибки
     LTR_LOGLVL_ERR, //< Ошибки
     LTR_LOGLVL_WARN, //< Предупреждения

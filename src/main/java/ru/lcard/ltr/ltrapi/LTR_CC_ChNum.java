@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
  * Номера каналов для соединения со службой ltrd
  */
 @AllArgsConstructor
-public enum en_LTR_CC_ChNum {
+public enum LTR_CC_ChNum {
     LTR_CC_CHNUM_CONTROL(0),  //< Канал для передачи управляющих запросов крейту или службе ltrd
     LTR_CC_CHNUM_MODULE1(1),  //< Канал для работы c модулем в слоте 1
     LTR_CC_CHNUM_MODULE2(2),  //< Канал для работы c модулем в слоте 2

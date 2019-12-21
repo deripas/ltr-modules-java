@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
  * Фалаги канала связи ltrd для явного задания интерфейса крейта
  */
 @AllArgsConstructor
-public enum en_LTR_CC_Iface {
+public enum LTR_CC_Iface {
     /**
      * Явное указание, что соединение должно быть с крейтом, подключенным по USB-интерфейсу
      */

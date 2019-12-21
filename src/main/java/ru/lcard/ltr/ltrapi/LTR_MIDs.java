@@ -3,7 +3,7 @@ package ru.lcard.ltr.ltrapi;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum en_LTR_MIDs {
+public enum LTR_MIDs {
     LTR_MID_EMPTY(0),                    //< Пустой слот
     LTR_MID_IDENTIFYING(0xFFFF),               //< Модуль в процессе определения типа
     LTR_MID_LTR01(LTR_MID_MODULE(1)),    //< Идентификатор модуля LTR01

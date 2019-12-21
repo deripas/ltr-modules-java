@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
  * Дополнительные флаги канала связи с ltrd
  */
 @AllArgsConstructor
-public enum en_LTR_CC_Flags {
+public enum LTR_CC_Flags {
     /**
      * флаг отладки --- ltrd передает клиенту
      * все данные, которые приходят от крейта,

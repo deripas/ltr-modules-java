@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
  * Флаги состояния соединения.
  */
 @AllArgsConstructor
-public enum en_LTR_ChStateFlags {
+public enum LTR_ChStateFlags {
     /**
      * Флаг переполнения буфера. Указывает что
      * из-за того, что клиент не считывал данные,

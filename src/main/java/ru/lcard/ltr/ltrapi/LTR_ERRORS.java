@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
  * Также включают общие коды ошибок для модулей.
  **/
 @AllArgsConstructor
-public enum en_LTR_ERRORS {
+public enum LTR_ERRORS {
     OK(0),                                 //Выполнено без ошибок.
     ERROR_UNKNOWN(-1),                     //Неизвестная ошибка.
     ERROR_PARAMETRS(-2),                   //Ошибка входных параметров.

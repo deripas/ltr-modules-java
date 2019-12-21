@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
  * процессора. Для штатной прошивки не имеют значения.
  */
 @AllArgsConstructor
-public enum en_LTR_UserIoCfg {
+public enum LTR_UserIoCfg {
     LTR_USERIO_DIGIN1(1),    //< Ножка является входом и подключена к DIGIN1
     LTR_USERIO_DIGIN2(2),    //< Ножка является входом и подключена к DIGIN2
     LTR_USERIO_DIGOUT(0),    //< Ножка является выходом
