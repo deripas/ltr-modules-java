@@ -1,11 +1,8 @@
 package ru.lcard.ltr;
 
-import jnr.ffi.Struct;
-import jnr.ffi.provider.FFIProvider;
-
-public abstract class StructPack4 extends Struct {
+public abstract class StructPack4 extends StructSimple {
 
     protected StructPack4() {
-        super(FFIProvider.getSystemProvider().getRuntime(), new Alignment(4));
+        super(4);
     }
 }
