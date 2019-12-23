@@ -11,7 +11,11 @@ public abstract class StructSimple extends Struct {
     }
 
     protected StructSimple(int alignment) {
-        super(FFIProvider.getSystemProvider().getRuntime(), new Alignment(alignment));
+        this(FFIProvider.getSystemProvider().getRuntime(), alignment);
+    }
+
+    protected StructSimple(jnr.ffi.Runtime runtime, int alignment) {
+        super(runtime, new Alignment(alignment));
     }
 
 
