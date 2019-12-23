@@ -1,7 +1,6 @@
 package ru.lcard.ltr.ltr212;
 
 import jnr.ffi.LibraryLoader;
-import jnr.ffi.annotations.Encoding;
 import jnr.ffi.annotations.Out;
 import jnr.ffi.byref.ByteByReference;
 import jnr.ffi.byref.DoubleByReference;
@@ -51,6 +50,5 @@ public interface Ltr212Api {
     int LTR212_CalcTimeOut(TLTR212 module, int n);
 
     // функции вспомагательного характера
-    @Encoding("windows-1251")
     String LTR212_GetErrorString(int err);
 }
