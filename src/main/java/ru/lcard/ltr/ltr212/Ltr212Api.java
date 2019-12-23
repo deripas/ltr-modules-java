@@ -1,6 +1,7 @@
 package ru.lcard.ltr.ltr212;
 
 import jnr.ffi.LibraryLoader;
+import jnr.ffi.annotations.Encoding;
 import jnr.ffi.annotations.Out;
 import jnr.ffi.byref.ByteByReference;
 import jnr.ffi.byref.DoubleByReference;
@@ -37,7 +38,7 @@ public interface Ltr212Api {
 
     int LTR212_Recv(TLTR212 module, int[] data, int[] tmark, int size, int timeout);
 
-    int LTR212_ProcessData(TLTR212 module, int[] src, double[] dest, @Out IntByReference size, boolean volt);
+    int LTR212_ProcessData(TLTR212 module, int[] src, double[] dest, IntByReference size, boolean volt);
 
     int LTR212_Calibrate(TLTR212 module, @Out ByteByReference LChannel_Mask, LTR212_CALIBR_MODE mode, int reset);
 
@@ -50,5 +51,6 @@ public interface Ltr212Api {
     int LTR212_CalcTimeOut(TLTR212 module, int n);
 
     // функции вспомагательного характера
+    @Encoding("windows-1251")
     String LTR212_GetErrorString(int err);
 }
