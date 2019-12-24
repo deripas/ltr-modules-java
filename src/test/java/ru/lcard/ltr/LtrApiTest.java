@@ -1,12 +1,11 @@
 package ru.lcard.ltr;
 
-import jnr.ffi.Struct;
 import org.junit.Test;
 import ru.lcard.ltr.ltrapi.LtrApi;
 import ru.lcard.ltr.ltrapi.TLTR;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static ru.lcard.ltr.StructUtil.assertSize;
 
 public class LtrApiTest {
 
@@ -14,6 +13,6 @@ public class LtrApiTest {
     public void testInit() {
         TLTR tltr = new TLTR();
         assertEquals(0, LtrApi.INSTANCE.LTR_Init(tltr));
-        assertEquals(40, Struct.size(tltr));
+        assertSize(40, tltr);
     }
 }

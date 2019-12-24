@@ -25,5 +25,4 @@ public class TLTR212 extends StructPack4 {
     public WORD CRC_PM = new WORD(); // для служебного пользования
     public WORD CRC_Flash_Eval = new WORD(); // для служебного пользования
     public WORD CRC_Flash_Read = new WORD(); // для служебного пользования
-    public WORD WTF = new WORD(); // ???
 }

@@ -48,6 +48,4 @@ public class TLTR25 extends StructPack4 {
      * Информация о модуле
      */
     public TLTR25_MODULE_INFO ModuleInfo = inner(new TLTR25_MODULE_INFO());
-
-    public WORD WTF = new WORD(); // ???
 }
