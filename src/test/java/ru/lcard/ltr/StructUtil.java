@@ -16,6 +16,6 @@ public class StructUtil {
         int correctSize = size + addressSize - (size & (addressSize - 1));
         if (expectedSize == correctSize) return; // equals, OK
 
-        Assert.fail("bad structure");
+        Assert.fail("bad structure, expected:" + expectedSize + ", actual:" + size);
     }
 }
