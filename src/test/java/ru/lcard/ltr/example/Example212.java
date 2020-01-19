@@ -20,7 +20,7 @@ public class Example212 {
         System.out.println(Ltr212Api.INSTANCE.LTR212_GetErrorString(error));
 
         TLTR tltr = tltr212.Channel;
-        error = Ltr212Api.INSTANCE.LTR212_Open(tltr212, tltr.saddr.intValue(), tltr.sport.get(), tltr.csn.get(), 1, "ltr212.bio");
+        error = Ltr212Api.INSTANCE.LTR212_Open(tltr212, tltr.saddr.intValue(), tltr.sport.get(), tltr.csn.get(), 1, "");
         System.out.println(Ltr212Api.INSTANCE.LTR212_GetErrorString(error));
 
         tltr212.AcqMode.set(LTR212_FOUR_CHANNELS_WITH_MEDIUM_RESOLUTION);
